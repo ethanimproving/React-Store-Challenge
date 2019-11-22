@@ -3,6 +3,10 @@ import { AccountsRepository } from '../api';
 
 export class ReviewForm extends React.Component {
 
+  state = {
+    rating: 0
+  }
+
   render() {
     return (
       <>
@@ -26,6 +30,8 @@ export class ReviewForm extends React.Component {
                     <select
                       class="form-control ratings-container"
                       name="rating"
+                      value={ this.state.rating }
+                      onChange={ e => this.setState( {rating: e.target.value } ) }
                     >
                       <option value="-1"></option>
                       <option value="1">1 star</option>
@@ -34,7 +40,9 @@ export class ReviewForm extends React.Component {
                       <option value="4">4 stars</option>
                       <option value="5">5 stars</option>
                     </select>
-                    &nbsp; [[RATING]]
+                    &nbsp; {
+                      [1, 2, 3, 4, 5].map(n => (<i key={n} className={(n > this.state.rating ? 'empty-star' : 'full-star')}></i>))
+                    }
                   </div>
                 </div>
               </div>
