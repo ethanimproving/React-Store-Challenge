@@ -5,7 +5,7 @@ export const ReviewList = props => (
            <div className="mt-3">
              <div className="d-flex">
                <h4>Product Reviews</h4>
-<h4 className="ml-2 text-muted">{props.reviews.length}</h4>
+               <h4 className="ml-2 text-muted">{props.reviews.length}</h4>
              </div>
              <div className="mb-4 p-3 bg-light text-muted">
                Be the first to add a review!

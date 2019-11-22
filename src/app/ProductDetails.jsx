@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProductsRepository } from '../api';
 import { ReviewList } from './ReviewList';
+import { ReviewForm } from './ReviewForm';
 
 
 export class ProductDetails extends React.Component {
@@ -42,7 +43,7 @@ export class ProductDetails extends React.Component {
             </div>
           </div>
           <ReviewList reviews={ this.state.product.reviews }/>
-          [[REVIEW_FORM]]
+          <ReviewForm/>
         </div>
       </>
     );
