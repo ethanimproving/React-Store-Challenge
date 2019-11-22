@@ -1,38 +1,59 @@
 import React from 'react';
+import { ProductsRepository } from '../api';
+import { ReviewList } from './ReviewList';
 
 
 export class ProductDetails extends React.Component {
+
+  productsRepository = new ProductsRepository();
+
+  state = {
+    product: {
+      reviews: []
+    }
+  }
+
+  url = "http://johnlawrimore.com/smu/";
 
   render() {
     return (
       <>
         <div>
           <nav>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
                 <a href="#">Tasty Snacks</a>
               </li>
-              <li class="breadcrumb-item active">[[PRODUCT_NAME]]</li>
+              <li className="breadcrumb-item active">{this.state.product.name}</li>
             </ol>
           </nav>
-          <div class="container p-5 bg-light">
-            <div class="d-flex">
-              <div class="mr-4">
-                <img class="product-image" src="[[PRODUCT_IMAGE_URL]]" />
+          <div className="container p-5 bg-light">
+            <div className="d-flex">
+              <div className="mr-4">
+                <img className="product-image" src={this.url + this.state.product.imageName}  />
               </div>
               <div>
-                <h1 class="font-weight-light">[[PRODUCT_NAME]]</h1>
-                <span class="badge badge-primary badge-lg">
-                  $[[PRODUCT_PRICE]]
+                <h1 className="font-weight-light">{this.state.product.name}</h1>
+                <span className="badge badge-primary badge-lg">
+                  ${this.state.product.price}
                 </span>
-                <p class="text-muted mt-4">[[PRODUCT_DESCRIPTION]]</p>
+                <p className="text-muted mt-4">{this.state.product.description}</p>
               </div>
             </div>
           </div>
-          [[REVIEW_LIST]] [[REVIEW_FORM]]
+          <ReviewList reviews={ this.state.product.reviews }/>
+          [[REVIEW_FORM]]
         </div>
       </>
     );
+  }
+
+  componentDidMount() {
+    let productId = this.props.match.params.productId;
+    if (productId) {
+      this.productsRepository.getProduct(productId)
+        .then(product => this.setState({product}));
+    }
   }
 
 }
