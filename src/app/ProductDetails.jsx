@@ -14,8 +14,6 @@ export class ProductDetails extends React.Component {
     }
   }
 
-  url = "http://johnlawrimore.com/smu/";
-
   render() {
     return (
       <>
@@ -31,7 +29,7 @@ export class ProductDetails extends React.Component {
           <div className="container p-5 bg-light">
             <div className="d-flex">
               <div className="mr-4">
-                <img className="product-image" src={this.url + this.state.product.imageName}  />
+                <img className="product-image" src={"http://johnlawrimore.com/smu/" + this.state.product.imageName}  />
               </div>
               <div>
                 <h1 className="font-weight-light">{this.state.product.name}</h1>
@@ -43,7 +41,7 @@ export class ProductDetails extends React.Component {
             </div>
           </div>
           <ReviewList reviews={ this.state.product.reviews }/>
-          <ReviewForm/>
+          <ReviewForm productId={this.state.product.id} reviews={ this.state.product.reviews }/>
         </div>
       </>
     );

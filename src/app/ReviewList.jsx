@@ -10,22 +10,22 @@ export const ReviewList = props => (
              <div className="mb-4 p-3 bg-light text-muted">
                Be the first to add a review!
              </div>
-             {props.reviews.map((x, i) => (
+             {props.reviews.map((review, i) => (
                <div key={i} className="card mb-3 bg-light">
                  <div className="card-header">
                    <span className="stars">
                     {
-                      [1, 2, 3, 4, 5].map(n => (<i key={n} className={(n > x.rating ? 'empty-star' : 'full-star')}></i>))
+                      [1, 2, 3, 4, 5].map(n => (<i key={n} className={(n > review.rating ? 'empty-star' : 'full-star')}></i>))
                     }
                    </span>
                  </div>
                  <div className="card-body">
                    <div>
                      <div className="d-flex justify-content-between mb-2 text-muted">
-                       <div>{x.userName}</div>
-                       <div>{x.date}</div>
+                       <div>{review.userName}</div>
+                       <div>{review.date}</div>
                      </div>
-                     <div>"{x.comment}"</div>
+                     <div>"{review.comment}"</div>
                    </div>
                  </div>
                </div>
